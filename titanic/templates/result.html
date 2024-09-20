@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Background with Text</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .bg {
+            background-image: url('../static/images/titanic.jpg'); /* Replace with your image URL */
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            animation: fadeIn 2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .content {
+            text-align: center;
+            color: white;
+            animation: slideUp 1.5s;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .content h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .content p {
+            font-size: 1.5em;
+        }
+        .content button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .content button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <div class="content">
+            <h1>Welcome to Titanic result page</h1>
+            <button onclick="location.href='#'">Result :- {{result}}</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Django Application</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .bg {
+            background-image: url('{% static "/images/titanic.jpg" %}');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* animation: fadeIn 2s; */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 0.5; }
+        }
+        .custom-border {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .form-label {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <section class="bg" >
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 custom-border">
+                    <h1>Titanic Django Application</h1>
+                    <hr>
+                    {% if result %}
+                        <h1><span style="color: chartreuse;"> </span>{{ result }}</h1>
+                    {% endif %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <!-- Gender -->
+                        <div class="mb-3">
+                            <label for="Pclass" class="form-label">Pclass</label>
+                            <p>Enter number 1 or 2 or 3</p>
+                            <input type="number" name="Pclass" class="form-control" min="1" max="3" required>
+                        </div>
+                        <!-- Tenure -->
+                        <div class="mb-3">
+                            <label for="Sex" class="form-label">Sex</label>
+                            <p>Enter number 0 for male or 1 for female</p>
+
+                            <input type="number" name="Sex" class="form-control" min="0" max="1" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Age" class="form-label">Age</label>
+
+                            <input type="number" name="Age" class="form-control" required>
+                        </div>
+                        <!-- Monthly Charges -->
+                        <div class="mb-3">
+                            <label for="Embarked" class="form-label">Embarked</label>
+                            <p>Enter number 0 or 1 or 2</p>
+
+                            <input type="number" name="Embarked" class="form-control" min="0" max="2" required>
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
