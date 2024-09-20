@@ -1,0 +1,144 @@
+import pyttsx3  # pip install pyttsx3  (text to speech)
+import speech_recognition as sr  # pip install speechRecognition  (speech to text)
+
+import sys
+import datetime
+import time
+
+now = datetime.datetime.now()
+
+# Add one minute to the current time
+send_hour = now.hour
+send_minute = now.minute + 1
+
+# If the current minute is 59, adjust for the next hour
+if send_minute == 60:
+    send_minute = 0
+    send_hour += 1
+
+import pywhatkit  as pwk
+import pywhatkit
+  # (to automation)
+
+def son(s):
+    time.sleep(s)
+    return s
+
+
+import random
+
+
+def gettime():
+    import datetime
+    return datetime.datetime.now()
+
+
+rand = random.randint(1, 5)
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+# print(voices[1].id)
+engine.setProperty('voice', voices[0].id)
+
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+
+def wishMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour >= 0 and hour < 12:
+        so1 = 'good morning sir'
+        print(so1.upper())
+        speak("Good Morning sir")
+
+    elif hour >= 12 and hour < 18:
+        so2 = 'good afternoon sir'
+        print(so2.upper())
+        speak("Good Afternoon sir ")
+
+    else:
+        so3 = 'good evening sir'
+        print(so3.upper())
+        speak("Good Evening sir")
+
+    spp3 = 'I am Robotic Sir. Please tell me how may I help you'
+    print(spp3.upper())
+
+    speak("I am Robo Sir. Please tell me how may I help you")
+
+
+def takeCommand():
+    #It takes microphone input from the user and returns string output
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing...")
+        query = r.recognize_google(audio, language='en-in')
+        print(f"User said: {query}\n")
+
+    except Exception as e:
+        # print(e)
+        print("Say that again please...")
+        return "None"
+    return query
+
+if __name__ == "__main__":
+    wishMe()
+
+    while True:
+        query = takeCommand().lower()
+
+
+
+        # youtube services open
+        if('youtube' in query):
+            speak("Youtube servives is opened for you ! please search your desire things")
+            while True:
+                mess = takeCommand().lower()
+                if('stop' in mess):
+                    speak("thank you sir! i am going")
+                    sys.exit()
+                
+                else:
+                    speak('please say something')
+                    pywhatkit.playonyt(f"{mess}")
+
+
+
+        # search engine services open
+        elif ('search' in query):
+            speak('Google open')
+            while True:
+                mess = takeCommand().lower()
+                if('stop' in mess):
+                    speak("thank you sir! i am going")
+                    sys.exit()
+                else:
+                    pywhatkit.search(f"{mess}")
+                    
+
+
+        # whatsapp services open
+        elif('whatsapp' in query):
+            speak('whatsapp is going to open')
+            pwk.sendwhatmsg("+919588938688", "Hello, How are you!", send_hour, send_minute)
+
+
+
+
+
+
+
+
+
+
+
+
+
